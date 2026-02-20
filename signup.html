@@ -36,7 +36,7 @@
             margin-bottom: 20px;
         }
 
-        input, select {
+        input {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -46,7 +46,7 @@
             font-size: 14px;
         }
 
-        input:focus, select:focus {
+        input:focus {
             border-color: #c2185b;
         }
 
@@ -83,19 +83,13 @@
 
 <div class="signup-container">
     <h1>STREE</h1>
-    <p class="tagline">Create Your Health Profile</p>
+    <p class="tagline">Create Your Account</p>
 
     <form action="/signup" method="POST">
         <input type="text" name="name" placeholder="Full Name" required>
         <input type="number" name="age" placeholder="Age" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
-
-        <select name="cycle_type" required>
-            <option value="">Select Cycle Type</option>
-            <option value="regular">Regular</option>
-            <option value="irregular">Irregular</option>
-        </select>
 
         <button type="submit">Create Account</button>
     </form>
