@@ -30,6 +30,7 @@ init_db()
 # ------------------ SIGNUP ------------------
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    print("log 1")
     if request.method == 'POST':
         name = request.form['name']
         age = request.form['age']
@@ -50,9 +51,9 @@ def signup():
         except sqlite3.IntegrityError:
             conn.close()
             return "Email already registered!"
-
+        print("jaooooooooooooo")
         conn.close()
-        return redirect('/login')
+        return render_template('login.html')
 
     return render_template('signup.html')
 
