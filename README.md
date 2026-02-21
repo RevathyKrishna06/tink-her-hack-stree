@@ -73,6 +73,11 @@ List the key features of your project:
 ### For Software:
 
 #### Screenshots (Add at least 3)
+<img width="1114" height="810" alt="Screenshot 2026-02-21 094036" src="https://github.com/user-attachments/assets/924c736c-946b-46f6-bb9f-067e2f246db7" />
+<img width="1874" height="867" alt="Screenshot 2026-02-21 093830" src="https://github.com/user-attachments/assets/35aa6710-4437-42b2-8f48-fb14da04e23c" />
+<img width="1893" height="737" alt="Screenshot 2026-02-21 093816" src="https://github.com/user-attachments/assets/59b636a2-328d-4326-8534-bb7809ba94d7" />
+<img width="862" height="790" alt="Screenshot 2026-02-21 093756" src="https://github.com/user-attachments/assets/cc0366d3-5369-4e22-b4ba-db178570737d" />
+<img width="1319" height="802" alt="Screenshot 2026-02-21 094046" src="https://github.com/user-attachments/assets/15e7240e-5113-439d-8447-4b9370da5e80" />
 
 ![Login Page](./static/screenshots/login.png)
 *Login page of our website*
