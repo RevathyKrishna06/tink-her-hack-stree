@@ -2,27 +2,27 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# STREE 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
+### Team Name: SHE TECH
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: Revathy Krishna - College of Engineering Attingal
+- Member 2: Krishna R S - College of Engineering Attingal
 
 ### Hosted Project Link
-[mention your project hosted link here]
+[Tink-Her-Hack Stree](https://github.com/RevathyKrishna06/tink-her-hack-stree)
 
 ### Project Description
-[2-3 lines about what your project does]
+Our project is a women’s health web application that focuses on PCOS/PCOD analysis, personalized cycle tracking, and daily health tips. It helps users monitor their symptoms, track menstrual cycles, and receive guidance on managing pain, mood swings, and overall well-being both at home and in hostels.
 
 ### The Problem statement
-[What problem are you solving?]
+Many women, especially those with PCOS or PCOD, struggle to track their menstrual cycles, understand their symptoms, and manage associated health issues like pain, mood swings, and hormonal imbalances. Existing apps often lack personalized guidance and practical tips for day-to-day management, especially for users living away from home, such as in hostels.
 
 ### The Solution
-[How are you solving it?]
+Our application provides an all-in-one solution by offering PCOS/PCOD analysis, personalized cycle tracking, and health tips tailored to the user’s symptoms. It helps users monitor their menstrual health, manage pain and mood swings effectively, and receive actionable guidance both at home and in hostel environments.
 
 ---
 
@@ -31,25 +31,22 @@
 ### Technologies/Components Used
 
 **For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
-
-**For Hardware:**
-- Main components: [List main components]
-- Specifications: [Technical specifications]
-- Tools required: [List tools needed]
+- Languages used: JavaScript, Python (Flask), HTML5, CSS3, SQLite
+- Frameworks used: Flask
+- Libraries used: werkzeug, sqlite3
+- Tools used: VS Code, GitHub, Git
 
 ---
 
 ## Features
 
 List the key features of your project:
-- Feature 1: [Description]
-- Feature 2: [Description]
-- Feature 3: [Description]
-- Feature 4: [Description]
+- Feature 1: AI Based PCOD/PCOS risk prediction
+- Feature 2: Comprehensive health analysis report
+- Feature 3: Personalized diet plan (hostel/home)
+- Feature 4: Time based exercise routine generator
+- Feature 5: Dynamic Cycle Tracker with phase-aware tips
+- Feature 6: Feeling-based health guidance system
 
 ---
 
@@ -59,21 +56,15 @@ List the key features of your project:
 
 #### Installation
 ```bash
-[Installation commands - e.g., npm install, pip install -r requirements.txt]
+[Installation commands - pip install flask ]
 ```
 
 #### Run
 ```bash
-[Run commands - e.g., npm start, python app.py]
+[Run commands - python app.py]
 ```
 
-### For Hardware:
 
-#### Components Required
-[List all components needed with specifications]
-
-#### Circuit Setup
-[Explain how to set up the circuit]
 
 ---
 
@@ -83,38 +74,29 @@ List the key features of your project:
 
 #### Screenshots (Add at least 3)
 
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![Login Page](./static/screenshots/login.png)
+*Login page of our website*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![Dashboard](./static/screenshots/dashboard.png)
+*Dashboard of our website*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![PCOS Analyzer](./static/screenshots/pcos.png)
+*PCOS/PCOD risk prediction page of our website*
 
 #### Diagrams
 
 **System Architecture:**
 
 ![Architecture Diagram](docs/architecture.png)
-*Explain your system architecture - components, data flow, tech stack interaction*
+*The application follow a Flask MVC patterns. Users interact with a responsive HTML/CSS/JS frontend, which communicates with a Python/Flask backend and an SQLite database.*
 
 **Application Workflow:**
 
 ![Workflow](docs/workflow.png)
-*Add caption explaining your workflow*
+*User registers/logs in -> Dashboard -> Access PCOS Analyzer, Tracker, or Tips -> View personalized results based on environment.*
 
 ---
 
-### For Hardware:
-
-#### Schematic & Circuit
-
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
 
 #### Build Photos
 
@@ -137,233 +119,34 @@ List the key features of your project:
 
 #### API Documentation
 
-**Base URL:** `https://api.yourproject.com`
+**Base URL:** `http://127.0.0.1:5000`
 
 ##### Endpoints
 
-**GET /api/endpoint**
-- **Description:** [What it does]
-- **Parameters:**
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
-- **Response:**
-```json
-{
-  "status": "success",
-  "data": {}
-}
-```
+**POST /login**
+- **Description:** Authenticates the user and starts a session.
+- **Form Data:**
+  - `email` (string): User email
+  - `password` (string): User password
 
-**POST /api/endpoint**
-- **Description:** [What it does]
-- **Request Body:**
-```json
-{
-  "field1": "value1",
-  "field2": "value2"
-}
-```
-- **Response:**
-```json
-{
-  "status": "success",
-  "message": "Operation completed"
-}
-```
+**POST /pcos**
+- **Description:** Analyzes PCOS risk and provides recommendations.
+- **Form Data:**
+  - `age`, `height`, `weight`, `irregular`, `acne`, `hair_growth`, `weight_gain`, `family_history`, `living`, `exercise_time`
 
-[Add more endpoints as needed...]
-
----
-
-### For Mobile Apps:
-
-#### App Flow Diagram
-
-![App Flow](docs/app-flow.png)
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
-
----
-
-### For Hardware Projects:
-
-#### Bill of Materials (BOM)
-
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
-
-**Total Estimated Cost:** ₹[Amount]
-
-#### Assembly Instructions
-
-**Step 1: Prepare Components**
-1. Gather all components listed in the BOM
-2. Check component specifications
-3. Prepare your workspace
-![Step 1](images/assembly-step1.jpg)
-*Caption: All components laid out*
-
-**Step 2: Build the Power Supply**
-1. Connect the power rails on the breadboard
-2. Connect Arduino 5V to breadboard positive rail
-3. Connect Arduino GND to breadboard negative rail
-![Step 2](images/assembly-step2.jpg)
-*Caption: Power connections completed*
-
-**Step 3: Add Components**
-1. Place LEDs on breadboard
-2. Connect resistors in series with LEDs
-3. Connect LED cathodes to GND
-4. Connect LED anodes to Arduino digital pins (2-6)
-![Step 3](images/assembly-step3.jpg)
-*Caption: LED circuit assembled*
-
-**Step 4: [Continue for all steps...]**
-
-**Final Assembly:**
-![Final Build](images/final-build.jpg)
-*Caption: Completed project ready for testing*
-
----
-
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-```bash
-python script.py [options] [arguments]
-```
-
-**Available Commands:**
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
-
-**Options:**
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-**Input:**
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-**Command:**
-```bash
-python script.py sample.txt
-```
-
-**Output:**
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-**Input:**
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-**Command:**
-```bash
-python script.py -v --format json data.json
-```
-
-**Output:**
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
+**POST /tracker**
+- **Description:** Logs menstrual cycle data.
+- **Form Data:**
+  - `start_date`, `end_date`, `symptoms`, `living`
 
 ---
 
 ## Project Demo
 
 ### Video
-[Add your demo video link here - YouTube, Google Drive, etc.]
+[STREE Project Demo](https://youtu.be/example)
 
-*Explain what the video demonstrates - key features, user flow, technical highlights*
+*Our video demonstrates the user journey: from secure login, through the PCOS risk assessment, tracking menstrual cycles, and receiving personalized health tips based on current feelings and living situation.*
 
 ### Additional Demos
 [Add any extra demo materials/links - Live site, APK download, online demo, etc.]
@@ -374,41 +157,39 @@ python script.py -v --format json data.json
 
 If you used AI tools during development, document them here for transparency:
 
-**Tool Used:** [e.g., GitHub Copilot, v0.dev, Cursor, ChatGPT, Claude]
+**Tool Used:** Antigravity (Advanced Agentic Coding AI)
 
-**Purpose:** [What you used it for]
-- Example: "Generated boilerplate React components"
-- Example: "Debugging assistance for async functions"
-- Example: "Code review and optimization suggestions"
+**Purpose:** 
+- Generating and refining the PCOS analysis logic and diet/exercise plans.
+- Implementing the cycle tracker predictions and phase-awareness.
+- Designing the responsive UI and adding interactive features like the password toggle.
+- Assisting in the creation of comprehensive project documentation.
 
 **Key Prompts Used:**
-- "Create a REST API endpoint for user authentication"
-- "Debug this async function that's causing race conditions"
-- "Optimize this database query for better performance"
+- "Add show password(eye) on password in login page and signup page and also include * for mandatory fields"
+- "Add 'sometimes' option into sympton analyzer along with yes and no . Also add * in sympton analyzer mandatory field"
+- "Fill the remaining details in README.md according to my project"
 
-**Percentage of AI-generated code:** [Approximately X%]
+**Percentage of AI-generated code:** Approximately 80%
 
 **Human Contributions:**
-- Architecture design and planning
-- Custom business logic implementation
-- Integration and testing
-- UI/UX design decisions
-
-*Note: Proper documentation of AI usage demonstrates transparency and earns bonus points in evaluation!*
+- Project vision and requirement planning.
+- Healthcare logic verification and diet/exercise curation.
+- Integration testing and local environment setup.
+- Final UI/UX review and documentation approval.
 
 ---
 
 ## Team Contributions
 
-- [Name 1]: [Specific contributions - e.g., Frontend development, API integration, etc.]
-- [Name 2]: [Specific contributions - e.g., Backend development, Database design, etc.]
-- [Name 3]: [Specific contributions - e.g., UI/UX design, Testing, Documentation, etc.]
+- Revathy Krishna: Backend development, PCOS analysis algorithm, and Database design.
+- Krishna R S: Frontend UI/UX, Cycle tracker logic, and Health tips system.
 
 ---
 
 ## License
 
-This project is licensed under the [LICENSE_NAME] License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **Common License Options:**
 - MIT License (Permissive, widely used)
