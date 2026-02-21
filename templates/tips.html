@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>STREE - Health Tips</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #ffebee, #ffffff);
+            min-height: 100vh;
+            padding: 30px 16px 60px;
+            color: #212121;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #d32f2f;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 32px;
+            max-width: 680px;
+            margin: 0 auto;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(93, 64, 55, 0.08);
+        }
+
+        h2 {
+            color: #d32f2f;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #9e9e9e;
+            font-size: 15px;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        /* Toggle Switch */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 36px;
+            background: #ffebee;
+            border-radius: 50px;
+            padding: 6px;
+            width: max-content;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 0 2px 5px rgba(211, 47, 47, 0.05);
+        }
+
+        .toggle-btn {
+            padding: 12px 28px;
+            border: none;
+            background: transparent;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #b71c1c;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+        }
+
+        .tip-category {
+            background: #ffffff;
+            border: 1.5px solid #ffcdd2;
+            border-radius: 24px;
+            padding: 26px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .tip-category:hover {
+            transform: translateY(-2px);
+        }
+
+        .tip-category h3 {
+            color: #d32f2f;
+            font-size: 17px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+        }
+
+        .tip-list {
+            padding-left: 20px;
+        }
+
+        .tip-list li {
+            font-size: 14.5px;
+            color: #424242;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .tip-list li::marker {
+            color: #ffcdd2;
+        }
+
+        .tip-content {
+            display: none;
+        }
+
+        .tip-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* New Dynamic Form Styles */
+        .feeling-form-container {
+            background: #ffffff;
+            border: 1.5px solid #ffcdd2;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.05);
+        }
+
+        .feeling-form label {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            color: #d32f2f;
+            margin-bottom: 12px;
+        }
+
+        .feeling-form textarea {
+            width: 100%;
+            padding: 16px;
+            border-radius: 16px;
+            border: 1.5px solid #ffcdd2;
+            font-size: 14.5px;
+            background: #ffebee;
+            outline: none;
+            resize: vertical;
+            transition: all 0.3s;
+            color: #212121;
+            font-family: inherit;
+            margin-bottom: 16px;
+        }
+
+        .feeling-form textarea:focus {
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
+            background: #ffffff;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.25);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 12px 28px;
+            background: transparent;
+            color: #d32f2f;
+            border: 1.5px solid #d32f2f;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14.5px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #ffebee;
+        }
+
+        .results-header {
+            color: #424242;
+            font-size: 18px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="/dashboard" class="back-link">← Return to Dashboard</a>
+
+    <div class="container">
+        <h2>Gentle Guidance 💌</h2>
+        <p class="subtitle">Practical lifestyle advice tailored to your environment to naturally support your
+            well-being.</p>
+
+        <!-- Dynamic Input Form -->
+        <div class="feeling-form-container">
+            <form action="/tips" method="POST" class="feeling-form">
+                <label for="feeling">How are you feeling today?</label>
+                <textarea name="feeling" id="feeling" rows="3"
+                    placeholder="E.g., I have terrible cramps, I feel tired, craving sweets..."
+                    required>{{ user_feeling }}</textarea>
+
+                <input type="hidden" name="living_env" id="living_env_input" value="{{ default_living }}">
+                <button type="submit" class="btn-primary">Get Guidance ✨</button>
+            </form>
+        </div>
+
+        <!-- Toggle Switch for Environment (Now updates hidden form field too) -->
+        <div class="toggle-container">
+            <button class="toggle-btn {{ 'active' if default_living == 'home' else '' }}" id="btn-home"
+                onclick="setContext('home'); document.getElementById('living_env_input').value='home';">🏡 At
+                Home</button>
+            <button class="toggle-btn {{ 'active' if default_living == 'hostel' else '' }}" id="btn-hostel"
+                onclick="setContext('hostel'); document.getElementById('living_env_input').value='hostel';">🏠 At
+                Hostel</button>
+        </div>
+
+        {% if dynamic_tips %}
+        <!-- DYNAMIC RESULTS VIEW -->
+        <div class="dynamic-results">
+            <h3 class="results-header">Based on how you're feeling...</h3>
+            {% for tip_group in dynamic_tips %}
+            <div class="tip-category" style="display: block;">
+                <h3>{{ tip_group.title }}</h3>
+                <ul class="tip-list">
+                    {% for item in tip_group.tips_list %}
+                    <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="/tips" class="btn-secondary">View All General Tips</a>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- DEFAULT STATIC VIEW -->
+        <!-- AB PAIN -->
+        <div class="tip-category">
+            <h3>⚡ When experiencing abdominal or menstrual pain</h3>
+
+            <div id="home-pain" class="tip-content {{ 'active' if default_living == 'home' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>The Classic Heating Pad:</strong> Use a proper hot water bag or an electric heating pad
+                        on your lower abdomen to soothe muscle cramps and improve blood flow.</li>
+                    <li><strong>Soothing Teas:</strong> Brew a fresh cup of warm ginger or chamomile tea to reduce
+                        inflammation and relax the body.</li>
+                    <li><strong>Gentle Movement:</strong> Practice light, restorative yoga poses, such as Child’s Pose
+                        or a gentle reclining twist, on your bed or an exercise mat.</li>
+                </ul>
+            </div>
+
+            <div id="hostel-pain" class="tip-content {{ 'active' if default_living == 'hostel' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>DIY Heating Pad:</strong> Fill a sturdy water bottle with hot water, wrap it in a towel
+                        or thick t-shirt, and place it on your stomach.</li>
+                    <li><strong>Quick Herbal Fix:</strong> Keep peppermint or ginger tea bags in your room. Use warm
+                        water from the kettle, dispenser, or canteen.</li>
+                    <li><strong>Dress for Comfort:</strong> Change out of jeans or tight clothes into the loosest, most
+                        comfortable pajamas as soon as you return to your room.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MOOD SWINGS -->
+        <div class="tip-category">
+            <h3>🎭 When feeling mood swings or irritability</h3>
+
+            <div id="home-mood" class="tip-content {{ 'active' if default_living == 'home' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>Sensory Break:</strong> Step into a quiet, dimly lit room for 15 minutes. Close your
+                        eyes and listen to calming music or guided meditation.</li>
+                    <li><strong>Creative Outlet:</strong> Engage in a relaxing hobby you enjoy—like reading, sketching,
+                        or gardening—to gently distract and center your mind.</li>
+                    <li><strong>Fresh Air:</strong> Step out onto your balcony or take a short, slow walk in your garden
+                        for a change of scenery.</li>
+                </ul>
+            </div>
+
+            <div id="hostel-mood" class="tip-content {{ 'active' if default_living == 'hostel' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>Create a "Bubble":</strong> Put on noise-canceling headphones (or regular earphones) and
+                        play your favorite podcast to block out hostel noise.</li>
+                    <li><strong>Brain Dump:</strong> Keep a journal on your desk. Write down your thoughts or doodle
+                        when feeling overwhelmed.</li>
+                    <li><strong>Change Scenery:</strong> Leave your room and take a short walk on the hostel terrace or
+                        campus grounds to reset.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FATIGUE -->
+        <div class="tip-category">
+            <h3>🥱 When fatigued or low on energy</h3>
+
+            <div id="home-fatigue" class="tip-content {{ 'active' if default_living == 'home' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>The Power Nap:</strong> Take a strict 20 to 30-minute power nap setting an alarm to
+                        avoid grogginess.</li>
+                    <li><strong>Fresh Energy Snacks:</strong> Grab a sustaining snack from the kitchen, like an apple
+                        with peanut butter or fresh yogurt with berries.</li>
+                    <li><strong>Light Stretching:</strong> Full-body stretching for 5 minutes. Reaching for the ceiling
+                        and touching toes can quickly improve blood circulation.</li>
+                </ul>
+            </div>
+
+            <div id="hostel-fatigue" class="tip-content {{ 'active' if default_living == 'hostel' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>Legs Up:</strong> Lie on your bed and prop your legs up against the wall for 10-15
+                        minutes to return blood flow to heart and brain.</li>
+                    <li><strong>Smart Stash:</strong> Keep non-perishable, energy-boosting snacks in your cupboard like
+                        roasted makhana or mixed seeds.</li>
+                    <li><strong>The Cold Splash:</strong> Splash cold water on your face, followed by deliberate neck
+                        rolls and shoulder shrugs at your desk.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DIET / HYDRATION -->
+        <div class="tip-category">
+            <h3>🥗 When managing diet, hydration, or cravings</h3>
+
+            <div id="home-diet" class="tip-content {{ 'active' if default_living == 'home' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>Infused Hydration:</strong> Make "spa water" adding cucumber, lemon, and mint leaves to
+                        your water to encourage drinking and reduce bloating.</li>
+                    <li><strong>Smart Sweets:</strong> Satisfy sugar cravings with natural options like dark chocolate
+                        (70%+), dates, or grapes.</li>
+                    <li><strong>Controlled Cooking:</strong> Prepare meals with fresh, fiber-rich vegetables and lean
+                        proteins, keeping processed ingredients to a minimum.</li>
+                </ul>
+            </div>
+
+            <div id="hostel-diet" class="tip-content {{ 'active' if default_living == 'hostel' else '' }}">
+                <ul class="tip-list">
+                    <li><strong>The Visual Reminder:</strong> Keep a large, transparent water bottle on your desk as a
+                        reminder to drink consistently.</li>
+                    <li><strong>Mess Hacks:</strong> Build a balanced plate prioritizing salads, plain curd, and protein
+                        sources, while limiting heavy, oily gravies.</li>
+                    <li><strong>Midnight Craving Kit:</strong> Keep healthier alternatives for late-night hunger like
+                        plain rolled oats or a small packet of dark chocolate.</li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <script>
+        function setContext(context) {
+            // Update buttons
+            document.getElementById('btn-home').classList.remove('active');
+            document.getElementById('btn-hostel').classList.remove('active');
+            document.getElementById('btn-' + context).classList.add('active');
+
+            // Update content blocks
+            document.querySelectorAll('.tip-content').forEach(el => el.classList.remove('active'));
+
+            const sections = ['pain', 'mood', 'fatigue', 'diet'];
+            sections.forEach(sec => {
+                document.getElementById(context + '-' + sec).classList.add('active');
+            });
+        }
+    </script>
+</body>
+
+</html>

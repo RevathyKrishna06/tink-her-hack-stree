@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>STREE - Women Health Companion</title>
@@ -9,7 +10,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            background: linear-gradient(to bottom right, #ffebee, #ffffff);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,98 +18,131 @@
         }
 
         .login-container {
-            background: white;
-            padding: 40px;
-            width: 350px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 45px 40px;
+            width: 380px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(93, 64, 55, 0.08);
             text-align: center;
         }
 
         h1 {
             margin-bottom: 5px;
-            color: #c2185b;
+            color: #d32f2f;
             font-size: 32px;
             letter-spacing: 2px;
         }
 
         p.tagline {
-            font-size: 14px;
-            color: gray;
-            margin-bottom: 25px;
+            font-size: 15px;
+            color: #757575;
+            margin-bottom: 28px;
+            line-height: 1.4;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
+            padding: 14px 16px;
+            margin: 10px 0;
+            border-radius: 16px;
+            border: 1.5px solid #ffcdd2;
             outline: none;
             font-size: 14px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
         input:focus {
-            border-color: #c2185b;
+            border-color: #d32f2f;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background-color: #c2185b;
+            padding: 14px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         button:hover {
-            background-color: #a3154d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.25);
         }
 
         .extra-links {
-            margin-top: 15px;
-            font-size: 13px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #424242;
         }
 
         .extra-links a {
-            color: #c2185b;
+            color: #d32f2f;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .disclaimer {
-            margin-top: 20px;
-            font-size: 11px;
-            color: gray;
+            margin-top: 24px;
+            font-size: 11.5px;
+            color: #9e9e9e;
+            line-height: 1.5;
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-container">
-        <h1>STREE</h1>
-        <p class="tagline">Empowering Women Through Health Awareness</p>
+        <h1>STREE 🤍</h1>
+        <p class="tagline">Your gentle companion for health and hormonal wellness.</p>
 
+        {% if error %}
+        <p style="color:#d32f2f; font-size:13px; margin-bottom:12px; font-weight:500;">💌 {{ error }}</p>
+        {% endif %}
         <form action="/login" method="POST">
-            <input type="email" name="email" placeholder="Enter Email" required>
-            <input type="password" name="password" placeholder="Enter Password" required>
-            <button type="submit">Login</button>
+            <input type="email" name="email" placeholder="Your Email address *" required>
+            <div style="position: relative; margin: 10px 0;">
+                <input type="password" name="password" id="password" placeholder="Your Password *" required
+                    style="margin: 0; padding-right: 40px;">
+                <span onclick="togglePassword('password', this)"
+                    style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #757575; user-select: none; font-size: 18px;">👁️</span>
+            </div>
+            <button type="submit">Welcome Back ✨</button>
         </form>
 
+        <script>
+            function togglePassword(inputId, icon) {
+                const input = document.getElementById(inputId);
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.textContent = '🙈';
+                } else {
+                    input.type = 'password';
+                    icon.textContent = '👁️';
+                }
+            }
+        </script>
+
         <div class="extra-links">
-            <p><a href="#">Forgot Password?</a></p>
-            <p>Don't have an account? <a href="/templates/signup.html">Sign Up</a></p>
+            <p>New here? Let's get started. <br><a href="/signup">Join our Safe Space 🌸</a></p>
         </div>
 
         <div class="disclaimer">
-            STREE provides health insights and does not replace professional medical advice.<br>
-            Your data is private and securely stored.
+            We are here to support you, but STREE does not replace a doctor's care. Your data is kept private and
+            secure. 🌿
         </div>
     </div>
 
 </body>
+
 </html>

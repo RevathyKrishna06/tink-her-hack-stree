@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>STREE - PCOS/PCOD Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #ffebee, #ffffff);
+            min-height: 100vh;
+            padding: 30px 16px 60px;
+            color: #212121;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #d32f2f;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            color: #d32f2f;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #d32f2f;
+            font-weight: 600;
+            margin-left: 20px;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: 1.5px solid transparent;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            border-color: #d32f2f;
+            background: #ffebee;
+        }
+
+        .container {
+            background: white;
+            padding: 36px 32px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(211, 47, 47, 0.15);
+        }
+
+        .page-title {
+            color: #d32f2f;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: #9e9e9e;
+            font-size: 14px;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .form-section {
+            background: #fff;
+            border: 1.5px solid #ffcdd2;
+            border-radius: 18px;
+            padding: 28px;
+            margin-top: 24px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #d32f2f;
+            border-bottom: 2px solid #ffcdd2;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        /* FORM STYLES */
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #424242;
+            font-size: 14.5px;
+        }
+
+        .form-group select,
+        .form-group input[type="number"],
+        .form-group input[type="file"] {
+            padding: 12px 16px;
+            border-radius: 16px;
+            border: 1.5px solid #ffcdd2;
+            font-size: 14px;
+            background-color: white;
+            outline: none;
+            transition: all 0.3s;
+            color: #212121;
+            font-family: inherit;
+        }
+
+        .form-group select:focus,
+        .form-group input[type="number"]:focus {
+            border-color: #d32f2f;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: white;
+            border: 1.5px solid #ffcdd2;
+            padding: 12px 24px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            justify-content: center;
+            font-weight: 500;
+        }
+
+        .radio-option:hover {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        input[type="radio"] {
+            accent-color: #d32f2f;
+            width: 18px;
+            height: 18px;
+        }
+
+        input[type="radio"]:checked+.radio-option {
+            border-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        /* GRID FOR MULTIPLE FIELDS */
+        .row-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .row-group .form-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 36px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.2);
+        }
+
+        .submit-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(211, 47, 47, 0.3);
+        }
+
+        /* ========== RESULTS ========== */
+        .result-section {
+            margin-top: 32px;
+        }
+
+        .risk-banner {
+            padding: 18px 20px;
+            border-radius: 14px;
+            text-align: center;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+
+        .risk-low {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #a5d6a7;
+        }
+
+        .risk-medium {
+            background: #fff8e1;
+            color: #f57f17;
+            border: 2px solid #ffe082;
+        }
+
+        .risk-high {
+            background: #fce4ec;
+            color: #c62828;
+            border: 2px solid #ef9a9a;
+        }
+
+        .progress-wrap {
+            background: #f0f0f0;
+            border-radius: 50px;
+            height: 14px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .progress-bar {
+            height: 14px;
+            border-radius: 50px;
+        }
+
+        .bar-low {
+            background: linear-gradient(90deg, #66bb6a, #43a047);
+        }
+
+        .bar-medium {
+            background: linear-gradient(90deg, #ffa726, #fb8c00);
+        }
+
+        .bar-high {
+            background: linear-gradient(90deg, #ef5350, #c62828);
+        }
+
+        .progress-label {
+            text-align: right;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        /* ---- Info card (shared) ---- */
+        .info-card {
+            border-radius: 14px;
+            padding: 20px 22px;
+            margin-top: 16px;
+        }
+
+        .info-card h4 {
+            font-size: 15px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-box {
+            margin-top: 14px;
+            background: white;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 12.5px;
+            color: #666;
+            border-left: 3px solid currentColor;
+        }
+
+        /* ---- Exercise card ---- */
+        .exercise-card {
+            background: #ffebee;
+            border: 1.5px solid #ffcdd2;
+        }
+
+        .exercise-card h4 {
+            color: #d32f2f;
+        }
+
+        .exercise-card .tip-box {
+            border-color: #d32f2f;
+            color: #d32f2f;
+        }
+
+        .exercise-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .exercise-item .pill {
+            background: #d32f2f;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 50px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .exercise-item p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* ---- Diet card ---- */
+        .diet-card {
+            background: #f0fdf4;
+            border: 1.5px solid #bbf7d0;
+        }
+
+        .diet-card h4 {
+            color: #166534;
+        }
+
+        .diet-card .tip-box {
+            border-color: #166534;
+            color: #166534;
+        }
+
+        .meal-row {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #d1fae5;
+        }
+
+        .meal-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .meal-meta {
+            min-width: 110px;
+            flex-shrink: 0;
+        }
+
+        .meal-time {
+            font-size: 10px;
+            color: #6b7280;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meal-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #166534;
+            margin-top: 2px;
+        }
+
+        .meal-items {
+            flex: 1;
+        }
+
+        .meal-items li {
+            font-size: 13px;
+            color: #444;
+            line-height: 1.6;
+            list-style: none;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .meal-items li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* Foods to avoid */
+        .avoid-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .avoid-tag {
+            background: #fce4ec;
+            color: #c62828;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid #f48fb1;
+        }
+
+        .avoid-tag::before {
+            content: '✗ ';
+        }
+
+        /* ---- Report note ---- */
+        .report-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #a0526e;
+            background: #fff8fb;
+            border-radius: 8px;
+            padding: 10px 12px;
+            border: 1px dashed #ffcdd2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>STREE 🤍</h1>
+        <div class="nav-links">
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Take a Break</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="page-title">Symptom Checker 🌸</h2>
+        <p class="page-subtitle">There are no right or wrong answers—just your unique experience. Take your time, let's
+            figure this out together.</p>
+
+        <form action="/pcos" method="POST" enctype="multipart/form-data">
+
+            <!-- 1. PHYSICAL METRICS CARD -->
+            <div class="form-section">
+                <div class="section-title">🌟 1. Getting to Know You</div>
+                <div class="row-group">
+                    <div class="form-group">
+                        <label>Your Age (Years)</label>
+                        <input type="number" name="age" min="12" max="51" value="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Height (cm)</label>
+                        <input type="number" name="height" min="100" max="250" placeholder="e.g. 165" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Weight (kg)</label>
+                        <input type="number" name="weight" min="30" max="250" placeholder="e.g. 60" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. LIFESTYLE CARD -->
+            <div class="form-section">
+                <div class="section-title">🌿 2. Your Daily Routine</div>
+
+                <div class="form-group">
+                    <label>Where is your primary living space right now?</label>
+                    <div class="radio-group" style="margin-bottom: 10px;">
+                        <label style="font-weight: normal; cursor: pointer; flex: 1;">
+                            <input type="radio" name="living" value="hostel" required style="display:none;">
+                            <div class="radio-option">🏕️ Hostel/PG</div>
+                        </label>
+                        <label style="font-weight: normal; cursor: pointer; flex: 1;">
+                            <input type="radio" name="living" value="home" required style="display:none;">
+                            <div class="radio-option">🏡 At Home</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>How much time can you dedicate to gentle movement daily?</label>
+                    <select name="exercise_time" required>
+                        <option value="15 ">15 minutes</option>
+                        <option value="30" selected>30 minutes</option>
+                        <option value="45 ">45 minutes</option>
+                        <option value="60 ">60 minutes</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 3. CLINICAL SYMPTOMS CARD -->
+            <div class="form-section">
+                <div class="section-title">📝 3. What You're Experiencing</div>
+
+                <div class="form-group">
+                    <label>Have your periods been irregular? (e.g., very late, missed, or unpredictable)</label>
+                    <select name="irregular" required>
+                        <option value="1">Yes, often</option>
+                        <option value="0" selected>No, they are regular</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Are you experiencing severe acne, especially around the jawline?</label>
+                    <select name="acne" required>
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you noticed excess hair growth on your face or body (Hirsutism)?</label>
+                    <select name="hair_growth" required>
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Have you experienced unexplained, sudden weight gain?</label>
+                    <select name="weight_gain" required>
+                        <option value="1">Yes</option>
+                        <option value="0" selected>No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Does anyone in your family have a history of PCOS/PCOD?</label>
+                    <select name="family_history" required>
+                        <option value="1">Yes, I believe so</option>
+                        <option value="0" selected>No / Unsure</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 4. MEDICAL REPORT CARD (OPTIONAL) -->
+            <div class="form-section">
+                <div class="section-title">🩺 4. Medical Context (Optional)</div>
+                <div class="form-group">
+                    <label>If you have a recent hormone panel or ultrasound, you can gently upload it here for
+                        safekeeping.</label>
+                    <input type="file" name="report" accept=".pdf,.jpg,.jpeg,.png">
+                    <small style="color: #9e9e9e; margin-top: 5px;">Accepted: PDF, JPG, PNG &middot; Max 5 MB</small>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Understand My Body 🌸</button>
+        </form>
+
+        <!-- ========== RESULTS ========== -->
+        {% if result %}
+        <div class="result-section">
+
+            <!-- 1. RISK PREDICTOR -->
+            <div class="section-title">📊 Risk Assessment</div>
+
+            <div style="display:flex; gap:16px; margin-bottom:14px; flex-wrap:wrap;">
+                <div class="risk-banner risk-{{ risk_class }}" style="flex:2; margin-bottom:0;">{{ result }}</div>
+
+                {% if bmi %}
+                <div class="risk-banner"
+                    style="flex:1; margin-bottom:0; background:#f3e5f5; color:#6a1b9a; border:2px solid #ce93d8;">
+                    <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px;">BMI Score</div>
+                    <div style="font-size:24px; font-weight:800; margin:4px 0;">{{ bmi }}</div>
+                    <div style="font-size:13px;">{{ bmi_cat }}</div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="progress-wrap">
+                <div class="progress-bar bar-{{ risk_class }}" style="width: {{ percentage }}%"></div>
+            </div>
+            <p class="progress-label">Calculated Risk Factor: {{ percentage }}%</p>
+
+            {% if report_uploaded %}
+            <div class="report-note">
+                📎 <strong>{{ report_filename }}</strong> uploaded. Share it with your gynecologist for a detailed
+                diagnosis.
+            </div>
+            {% endif %}
+
+            <!-- 2. EXERCISE PLAN -->
+            <div class="section-title">🏃‍♀️ Exercise Plan — {{ exercise_time }} min/day</div>
+            <div class="info-card exercise-card">
+                <h4>🏃‍♀️ Your Personalized Workout</h4>
+                {% for ex in exercises %}
+                <div class="exercise-item">
+                    <span class="pill">{{ ex.duration }}</span>
+                    <p><strong>{{ ex.name }}</strong> — {{ ex.desc }}</p>
+                </div>
+                {% endfor %}
+                <div class="tip-box">💡 {{ tip }}</div>
+            </div>
+
+            <!-- 3. DIET CHART -->
+            <div class="section-title">🥗 Daily Diet Chart
+                {% if living == 'hostel' %}(Hostel-Friendly){% else %}(Home Kitchen){% endif %}
+            </div>
+            <div class="info-card diet-card">
+                <h4>🥗 What to Eat Today</h4>
+                {% for meal in diet_meals %}
+                <div class="meal-row">
+                    <div class="meal-meta">
+                        <div class="meal-time">{{ meal.time }}</div>
+                        <div class="meal-label">{{ meal.emoji }} {{ meal.label }}</div>
+                    </div>
+                    <ul class="meal-items">
+                        {% for item in meal.foods %}
+                        <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+                <div class="tip-box">🌿 {{ diet_tip }}</div>
+            </div>
+
+            <!-- Foods to Avoid -->
+            <div class="section-title">🚫 Foods to Avoid</div>
+            <div class="avoid-grid">
+                {% for item in diet_avoid %}
+                <span class="avoid-tag">{{ item }}</span>
+                {% endfor %}
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

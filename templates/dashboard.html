@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>STREE - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #ffebee, #ffffff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---- NAVBAR ---- */
+        nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        nav .brand {
+            font-size: 24px;
+            font-weight: 800;
+            color: #d32f2f;
+            letter-spacing: 2px;
+        }
+
+        nav .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 15px;
+            color: #424242;
+            font-weight: 500;
+        }
+
+        nav .logout-btn {
+            background: transparent;
+            color: #d32f2f;
+            border: 1.5px solid #d32f2f;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        nav .logout-btn:hover {
+            background: #ffebee;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            color: #212121;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            color: #d32f2f;
+        }
+
+        .hero p {
+            margin-top: 14px;
+            font-size: 17px;
+            color: #757575;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+
+        /* ---- CARDS GRID ---- */
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 28px;
+            padding: 20px 40px 60px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 36px 30px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(93, 64, 55, 0.05);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(211, 47, 47, 0.15);
+            border-color: #ffcdd2;
+        }
+
+        .card .icon {
+            font-size: 48px;
+            margin-bottom: 4px;
+        }
+
+        .card h3 {
+            color: #d32f2f;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #616161;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .card .btn {
+            margin-top: auto;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        .card:hover .btn {
+            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.25);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="brand">STREE 🤍</div>
+        <div class="user-info">
+            🌸 Welcome back, <strong>{{ username }}</strong>!
+            <a href="/logout" class="logout-btn">Take a Break</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Let's care for your <span>body</span> together.</h1>
+        <p>Take a deep breath. Choose an area to explore, and let's find the best ways to support your wellness today.
+        </p>
+    </div>
+
+    <div class="cards">
+
+        <!-- PCOS Analyzer -->
+        <a href="/pcos" class="card">
+            <div class="icon">🌿</div>
+            <h3>Symptom Checker</h3>
+            <p>Gently assess your signs. We'll guide you through understanding your PCOS / PCOD risk securely.</p>
+            <span class="btn">Check My Symptoms</span>
+        </a>
+
+        <!-- Cycle Tracker -->
+        <a href="/tracker" class="card">
+            <div class="icon">📅</div>
+            <h3>My Cycle Journey</h3>
+            <p>Your body has its own unique rhythm. Log your cycle to get personalized, empathetic insights.</p>
+            <span class="btn">Track My Cycle</span>
+        </a>
+
+        <!-- Health Tips -->
+        <a href="/tips" class="card">
+            <div class="icon">💌</div>
+            <h3>Gentle Guidance</h3>
+            <p>Curated tips for nutrition, gentle movement, and easing your mind based on where you are right now.</p>
+            <span class="btn">Explore Tips</span>
+        </a>
+
+    </div>
+
+</body>
+
+</html>

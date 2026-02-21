@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>STREE - Sign Up</title>
@@ -9,7 +10,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            background: linear-gradient(to bottom right, #ffebee, #ffffff);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -17,87 +18,122 @@
         }
 
         .signup-container {
-            background: white;
-            padding: 35px;
-            width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 35px;
+            width: 420px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(93, 64, 55, 0.08);
             text-align: center;
         }
 
         h1 {
-            color: #c2185b;
+            color: #d32f2f;
             margin-bottom: 5px;
+            font-size: 32px;
+            letter-spacing: 2px;
         }
 
         p.tagline {
-            font-size: 14px;
-            color: gray;
-            margin-bottom: 20px;
+            font-size: 15px;
+            color: #757575;
+            margin-bottom: 24px;
+            line-height: 1.4;
         }
 
         input {
             width: 100%;
-            padding: 10px;
+            padding: 14px 16px;
             margin: 8px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
+            border-radius: 16px;
+            border: 1.5px solid #ffcdd2;
             outline: none;
             font-size: 14px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
         input:focus {
-            border-color: #c2185b;
+            border-color: #d32f2f;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.1);
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background-color: #c2185b;
+            padding: 14px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         button:hover {
-            background-color: #a3154d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(183, 28, 28, 0.25);
         }
 
         .extra-links {
-            margin-top: 15px;
-            font-size: 13px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #424242;
         }
 
         .extra-links a {
-            color: #c2185b;
+            color: #d32f2f;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
     </style>
 </head>
+
 <body>
 
-<div class="signup-container">
-    <h1>STREE</h1>
-    <p class="tagline">Create Your Account</p>
+    <div class="signup-container">
+        <h1>STREE 🤍</h1>
+        <p class="tagline">Welcome to a space where your health comes first.</p>
 
-    <form action="/signup" method="POST">
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="number" name="age" placeholder="Age" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
+        {% if error %}
+        <p style="color:#d32f2f; font-size:13px; margin-bottom:12px; font-weight:500;">💌 {{ error }}</p>
+        {% endif %}
+        <form action="/signup" method="POST">
+            <input type="text" name="name" placeholder="How should we call you? (Full Name) *" required>
+            <input type="number" name="age" placeholder="Your Age *" required>
+            <input type="email" name="email" placeholder="Your Email address *" required>
+            <div style="position: relative; margin: 8px 0;">
+                <input type="password" name="password" id="password" placeholder="Create a secure password *" required
+                    style="margin: 0; padding-right: 40px;">
+                <span onclick="togglePassword('password', this)"
+                    style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #757575; user-select: none; font-size: 18px;">👁️</span>
+            </div>
 
-        <button type="submit">Create Account</button>
-    </form>
+            <button type="submit">Start Your Healing Journey 🌸</button>
+        </form>
 
-    <div class="extra-links">
-        <p>Already have an account? <a href="/templates/login.html">Login</a></p>
+        <script>
+            function togglePassword(inputId, icon) {
+                const input = document.getElementById(inputId);
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.textContent = '🙈';
+                } else {
+                    input.type = 'password';
+                    icon.textContent = '👁️';
+                }
+            }
+        </script>
+
+        <div class="extra-links">
+            <p>Already part of the community? <br><a href="/login">Welcome Back ✨</a></p>
+        </div>
     </div>
-</div>
 
 </body>
+
 </html>
