@@ -4,6 +4,7 @@ import os
 from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+import process
 
 app = Flask(__name__)
 app.secret_key = "stree_secret_key"
@@ -798,4 +799,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, 
+            port=process.env.PORT or 5000)
