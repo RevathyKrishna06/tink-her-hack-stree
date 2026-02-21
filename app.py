@@ -374,11 +374,12 @@ def pcos():
 
         # ---- Symptom scores ----
         # Weighting primary symptoms heavier
-        irregular     = int(request.form['irregular']) * 2      # Max 4
-        acne          = int(request.form['acne'])               # Max 1
-        hair_growth   = int(request.form['hair_growth']) * 1.5  # Max 3
-        weight_gain   = int(request.form['weight_gain'])        # Max 1
-        family_history= int(request.form['family_history'])     # Max 2
+        # Values from Form: 0=No, 1=Sometimes, 2=Yes
+        irregular     = int(request.form['irregular']) * 2      # 0, 2, 4
+        acne          = int(request.form['acne']) * 0.5         # 0, 0.5, 1
+        hair_growth   = int(request.form['hair_growth']) * 1.5  # 0, 1.5, 3
+        weight_gain   = int(request.form['weight_gain']) * 0.5  # 0, 0.5, 1
+        family_history= int(request.form['family_history'])     # 0, 1, 2
 
         # ---- Lifestyle fields ----
         living        = request.form['living']          # 'hostel' or 'home'

@@ -482,15 +482,15 @@
                 <div class="section-title">🌟 1. Getting to Know You</div>
                 <div class="row-group">
                     <div class="form-group">
-                        <label>Your Age (Years)</label>
+                        <label>Your Age (Years) *</label>
                         <input type="number" name="age" min="12" max="51" value="20" required>
                     </div>
                     <div class="form-group">
-                        <label>Your Height (cm)</label>
+                        <label>Your Height (cm) *</label>
                         <input type="number" name="height" min="100" max="250" placeholder="e.g. 165" required>
                     </div>
                     <div class="form-group">
-                        <label>Your Weight (kg)</label>
+                        <label>Your Weight (kg) *</label>
                         <input type="number" name="weight" min="30" max="250" placeholder="e.g. 60" required>
                     </div>
                 </div>
@@ -501,7 +501,7 @@
                 <div class="section-title">🌿 2. Your Daily Routine</div>
 
                 <div class="form-group">
-                    <label>Where is your primary living space right now?</label>
+                    <label>Where is your primary living space right now? *</label>
                     <div class="radio-group" style="margin-bottom: 10px;">
                         <label style="font-weight: normal; cursor: pointer; flex: 1;">
                             <input type="radio" name="living" value="hostel" required style="display:none;">
@@ -515,7 +515,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>How much time can you dedicate to gentle movement daily?</label>
+                    <label>How much time can you dedicate to gentle movement daily? *</label>
                     <select name="exercise_time" required>
                         <option value="15 ">15 minutes</option>
                         <option value="30" selected>30 minutes</option>
@@ -530,42 +530,47 @@
                 <div class="section-title">📝 3. What You're Experiencing</div>
 
                 <div class="form-group">
-                    <label>Have your periods been irregular? (e.g., very late, missed, or unpredictable)</label>
+                    <label>Have your periods been irregular? (e.g., very late, missed, or unpredictable) *</label>
                     <select name="irregular" required>
-                        <option value="1">Yes, often</option>
+                        <option value="2">Yes, often</option>
+                        <option value="1">Sometimes</option>
                         <option value="0" selected>No, they are regular</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Are you experiencing severe acne, especially around the jawline?</label>
+                    <label>Are you experiencing severe acne, especially around the jawline? *</label>
                     <select name="acne" required>
-                        <option value="1">Yes</option>
+                        <option value="2">Yes</option>
+                        <option value="1">Sometimes</option>
                         <option value="0" selected>No</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Have you noticed excess hair growth on your face or body (Hirsutism)?</label>
+                    <label>Have you noticed excess hair growth on your face or body (Hirsutism)? *</label>
                     <select name="hair_growth" required>
-                        <option value="1">Yes</option>
+                        <option value="2">Yes</option>
+                        <option value="1">Sometimes</option>
                         <option value="0" selected>No</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Have you experienced unexplained, sudden weight gain?</label>
+                    <label>Have you experienced unexplained, sudden weight gain? *</label>
                     <select name="weight_gain" required>
-                        <option value="1">Yes</option>
+                        <option value="2">Yes</option>
+                        <option value="1">Sometimes</option>
                         <option value="0" selected>No</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Does anyone in your family have a history of PCOS/PCOD?</label>
+                    <label>Does anyone in your family have a history of PCOS/PCOD? *</label>
                     <select name="family_history" required>
-                        <option value="1">Yes, I believe so</option>
-                        <option value="0" selected>No / Unsure</option>
+                        <option value="2">Yes, I believe so</option>
+                        <option value="1">Maybe / Unsure</option>
+                        <option value="0" selected>No</option>
                     </select>
                 </div>
             </div>
