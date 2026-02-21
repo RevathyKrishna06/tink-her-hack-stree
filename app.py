@@ -800,4 +800,4 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=False, 
-            port=process.env.PORT or 5000)
+            port=process.env.PORT or 10000)
